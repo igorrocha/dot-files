@@ -109,7 +109,7 @@ alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 
 lawgilelib() {
-	npm i --save lawgile-shared-react-components@$1
+	npm i --save lawgile-shared-react-components@$1;hummus
 }
 
 whodat() {
@@ -117,12 +117,16 @@ whodat() {
 }
 
 deployfdev() {
-	sls deploy -f $1 --stage igor --profile lawgile-qa
+	sls deploy -f $1 --stage igor --profile lawgile-qa;hummus
 }
 
-alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install"
+alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; hummus"
 alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
 alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
+
+gitzshrc() {
+	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects 
+}
 
 # Other useful stuff 
 # sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2}
