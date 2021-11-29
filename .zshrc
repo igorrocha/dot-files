@@ -98,18 +98,17 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshrc="subl ~/Projects/zshrc/.zshrc"
-alias hummus="play /home/igor/Music/hummus.mp3 &>/dev/null"
-alias deploydev="sls deploy --stage igor --profile lawgile-qa --region us-east-1; hummus"
-alias migratedev="sls db:migrate --stage igor --profile lawgile-qa --region us-east-1; hummus"
-alias resetdev="sls db:reset --stage igor --profile lawgile-qa --region us-east-1; hummus"
-alias repairdev="sls db:repairSchema --stage igor --profile lawgile-qa --region us-east-1; hummus"
-alias gitwip="git add .;git commit -am 'wip' --no-verify"
-alias ns="npm start"
-alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
+
+lmk() 
+{ 
+    while read input; do
+        notify-send "$input";
+        play /home/igor/Music/hummus.mp3 &>/dev/null;
+    done
+}
 
 lawgilelib() {
-	npm i --save lawgile-shared-react-components@$1;hummus
+	npm i --save lawgile-shared-react-components@$1; echo "Lawgile lib installation finished." | lmk
 }
 
 whodat() {
@@ -117,16 +116,26 @@ whodat() {
 }
 
 deployfdev() {
-	sls deploy -f $1 --stage igor --profile lawgile-qa;hummus
+	sls deploy -f $1 --stage igor --profile lawgile-qa; echo "Deploy dev finished." | lmk
 }
-
-alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; hummus"
-alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
-alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
 gitzshrc() {
 	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects 
 }
+
+alias zshrc="subl ~/Projects/zshrc/.zshrc"
+alias deploydev="sls deploy --stage igor --profile lawgile-qa --region us-east-1; echo \"Deploy dev finished.\" | lmk"
+alias migratedev="sls db:migrate --stage igor --profile lawgile-qa --region us-east-1; echo \"Migrate dev finished.\" | lmk"
+alias resetdev="sls db:reset --stage igor --profile lawgile-qa --region us-east-1; echo \"Reset dev finished.\" | lmk"
+alias repairdev="sls db:repairSchema --stage igor --profile lawgile-qa --region us-east-1; echo \"Repair dev finished.\" | lmk"
+alias gitwip="git add .;git commit -am 'wip' --no-verify"
+alias ns="npm start"
+alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
+
+alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; echo \"Fix wifi finished.\" | lmk"
+alias fixkeyboard="setxkbmap -model abnt2 -layout br"
+alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
+alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
 # Other useful stuff 
 # sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2}
@@ -134,3 +143,4 @@ gitzshrc() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
