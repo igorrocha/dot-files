@@ -133,7 +133,7 @@ alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 
 alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; echo \"Fix wifi finished.\" | lmk"
-alias fixkeyboard="setxkbmap -model abnt2 -layout br"
+alias fixkb="setxkbmap -model abnt2 -layout br"
 alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
 alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
