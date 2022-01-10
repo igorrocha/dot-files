@@ -107,6 +107,7 @@ alias repairdev="sls db:repairSchema --stage igor --profile lawgile-qa --region 
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
+fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push"
 
 lawgilelib() {
 	npm i --save lawgile-shared-react-components@$1;hummus
@@ -120,7 +121,7 @@ deployfdev() {
 	sls deploy -f $1 --stage igor --profile lawgile-qa;hummus
 }
 
-alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; hummus"
+alias fixwifi="cd ~/rtl8821CU && make && sudo make install; hummus"
 alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
 alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
