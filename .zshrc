@@ -107,15 +107,19 @@ alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
-alias publishlib="npm i && npm publish; echo \"Lawgile React lib published.\" | lmk"
+# alias publishlib="npm i && npm publish; echo \"Lawgile React lib published.\" | lmk"
 
 alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; echo \"Fix wifi finished.\" | lmk"
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
 alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
-lawgilelib() {
-	npm i --save lawgile-shared-react-components@$1; echo "Lawgile lib installation finished." | lmk
+libinstall() {
+	npm i --save lawgile-shared-react-components@$1; echo "lawgile-shared-react-components version$1 installed." | lmk
+}
+
+libpublish() {
+    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish; echo "lawgile-shared-react-components version$1 published." | lmk
 }
 
 whodat() {
@@ -126,8 +130,7 @@ deployfdev() {
 	sls deploy -f $1 --stage igor --profile lawgile-qa; echo "Deploy dev finished." | lmk
 }
 
-lmk() 
-{ 
+lmk() { 
     while read input; do
         notify-send "$input";
         play /home/igor/Music/hummus.mp3 &>/dev/null;
