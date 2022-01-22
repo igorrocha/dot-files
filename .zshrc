@@ -143,7 +143,7 @@ gitzshrc() {
 
 
 # Other useful stuff 
-# sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2}
+# sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2} 
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
