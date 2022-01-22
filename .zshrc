@@ -107,6 +107,7 @@ alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
+alias publishlib="npm i && npm publish; echo \"Lawgile React lib published.\" | lmk"
 
 alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; echo \"Fix wifi finished.\" | lmk"
 alias fixkb="setxkbmap -model abnt2 -layout br"
