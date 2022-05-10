@@ -118,8 +118,12 @@ libinstall() {
 	npm i --save lawgile-shared-react-components@$1; echo "lawgile-shared-react-components version $1 installed." | lmk
 }
 
-libpublish() {
+libpublishlatest() {
     sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish; echo "lawgile-shared-react-components version $1 published." | lmk
+}
+
+libpublishdev() {
+    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish --tag=dev-igor; echo "lawgile-shared-react-components version $1 published." | lmk
 }
 
 whodat() {
