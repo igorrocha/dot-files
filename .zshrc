@@ -115,11 +115,11 @@ alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform
 alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
 
 libinstall() {
-	npm i --save lawgile-shared-react-components@$1; echo "lawgile-shared-react-components version$1 installed." | lmk
+	npm i --save lawgile-shared-react-components@$1; echo "lawgile-shared-react-components version $1 installed." | lmk
 }
 
 libpublish() {
-    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish; echo "lawgile-shared-react-components version$1 published." | lmk
+    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish; echo "lawgile-shared-react-components version $1 published." | lmk
 }
 
 whodat() {
