@@ -104,6 +104,7 @@ alias migratedev="sls db:migrate --stage igor --profile lawgile-qa --region us-e
 alias resetdev="sls db:reset --stage igor --profile lawgile-qa --region us-east-1; echo \"Reset dev finished.\" | lmk"
 alias repairdev="sls db:repairSchema --stage igor --profile lawgile-qa --region us-east-1; echo \"Repair dev finished.\" | lmk"
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
+alias gitamend="git add . && git commit --amend --no-edit"
 alias ns="npm start"
 alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
@@ -152,4 +153,3 @@ gitzshrc() {
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
