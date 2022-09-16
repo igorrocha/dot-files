@@ -98,8 +98,14 @@ source $ZSH/oh-my-zsh.sh
 #
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias zshrc="subl ~/Projects/zshrc/.zshrc"
 
+# zshrc
+alias zshrc="subl ~/Projects/zshrc/.zshrc"
+gitzshrc() {
+	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "zshrc git push finished." | lmk
+}
+
+# git
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
 alias ns="npm start"
@@ -113,10 +119,9 @@ lmk() {
     done
 }
 
-gitzshrc() {
-	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "zshrc git push finished." | lmk
-}
-
+# Lumx
+alias dbpull="yarn prisma db pull"
+alias dbgen="yarn prisma generate"
 
 # Other useful stuff 
 # sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2} 
