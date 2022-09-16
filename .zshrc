@@ -99,41 +99,12 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias zshrc="subl ~/Projects/zshrc/.zshrc"
-alias deploydev="sls deploy --stage igor --profile lawgile-qa --region us-east-1; echo \"Deploy dev finished.\" | lmk"
-alias migratedev="sls db:migrate --stage igor --profile lawgile-qa --region us-east-1; echo \"Migrate dev finished.\" | lmk"
-alias resetdev="sls db:reset --stage igor --profile lawgile-qa --region us-east-1; echo \"Reset dev finished.\" | lmk"
-alias repairdev="sls db:repairSchema --stage igor --profile lawgile-qa --region us-east-1; echo \"Repair dev finished.\" | lmk"
+
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
 alias ns="npm start"
-alias dbsecretprod="aws secretsmanager get-secret-value --secret-id DB_VARIABLES --profile lawgile-production --region us-east-1 | jq '{SecretString}'; sleep 5; clear"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
-# alias publishlib="npm i && npm publish; echo \"Lawgile React lib published.\" | lmk"
-
-alias fixwifi="cd /home/igor/RTL8811CU && make && sudo make install; echo \"Fix wifi finished.\" | lmk"
 alias fixkb="setxkbmap -model abnt2 -layout br"
-alias hdmifhd="xrandr --output HDMI-1-2 --mode 1920x1080 --scale 1x1 --transform none"
-alias hdmi1024="xrandr --output HDMI-1-2 --mode 1024x768 --scale 1.33333333x1 --transform none"
-
-libinstall() {
-	npm i --save lawgile-shared-react-components@$1; echo "lawgile-shared-react-components version $1 installed." | lmk
-}
-
-libpublishlatest() {
-    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish; echo "lawgile-shared-react-components version $1 published." | lmk
-}
-
-libpublishdev() {
-    sed -i "3s/.*/  \"version\": \"$1\",/" package.json && npm i && npm publish --tag=dev-igor; echo "lawgile-shared-react-components version $1 published." | lmk
-}
-
-whodat() {
-	aws cognito-idp list-users --user-pool-id us-east-1_xoM8J2BsL --profile lawgile-production --region us-east-1 | grep -B 1 -A 27 "$1"
-}
-
-deployfdev() {
-	sls deploy -f $1 --stage igor --profile lawgile-qa; echo "Deploy dev finished." | lmk
-}
 
 lmk() { 
     while read input; do
