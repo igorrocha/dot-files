@@ -115,8 +115,8 @@ alias ns="npm start"
 alias nrd="npm run dev"
 
 # Lumx
-alias dbpull="yarn prisma db pull"
-alias dbgen="yarn prisma generate"
+alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
+alias dbgen="yarn prisma generate; echo \"prisma schema generate finished.\" | lmk"
 
 # Other useful stuff 
 lmk() { 
