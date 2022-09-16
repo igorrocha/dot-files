@@ -108,22 +108,25 @@ gitzshrc() {
 # git
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
-alias ns="npm start"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
-alias fixkb="setxkbmap -model abnt2 -layout br"
 
-lmk() { 
-    while read input; do
-        notify-send "$input";
-        play /home/igor/Music/hummus.mp3 &>/dev/null;
-    done
-}
+# npm
+alias ns="npm start"
+alias nrd="npm run dev"
 
 # Lumx
 alias dbpull="yarn prisma db pull"
 alias dbgen="yarn prisma generate"
 
 # Other useful stuff 
+lmk() { 
+    while read input; do
+        notify-send "$input";
+        play /home/igor/Music/hummus.mp3 &>/dev/null;
+    done
+}
+alias fixkb="setxkbmap -model abnt2 -layout br"
+
 # sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2} 
 
 export NVM_DIR="$HOME/.nvm"
