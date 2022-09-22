@@ -117,7 +117,7 @@ alias nrd="npm run dev"
 # Lumx
 alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
 alias dbgen="yarn prisma generate; echo \"prisma schema generate finished.\" | lmk"
-alias freshstart="yarn; dbpull; dbgen; nrd"
+alias freshstart="git checkout .; git pull; nvm use 14.20; yarn; dbpull; dbgen; nrd"
 
 # Other useful stuff 
 lmk() { 
