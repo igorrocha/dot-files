@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/home/igor/.oh-my-zsh"
+export ZSH="/home/igor-lumx/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -100,7 +100,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # zshrc
-alias zshrc="subl ~/Projects/zshrc/.zshrc"
+alias zshrc="code ~/Projects/zshrc/.zshrc"
 gitzshrc() {
 	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "zshrc git push finished." | lmk
 }
@@ -113,23 +113,25 @@ alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --ame
 # npm
 alias ns="npm start"
 alias nrd="npm run dev"
+alias bs="npm run build:staging"
 
 # Lumx
 alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
 alias dbgen="yarn prisma generate; echo \"prisma schema generate finished.\" | lmk"
-alias freshstart="git checkout .; git pull; nvm use 14.20; yarn; dbpull; dbgen; nrd"
+alias freshstart="git checkout .; git pull; nvm use 14.20.0; yarn; dbpull; dbgen; nrd"
 
 # Other useful stuff 
+# play command needs sox installed: sudo apt-get install sox libsox-fmt-all
 lmk() { 
     while read input; do
         notify-send "$input";
-        play /home/igor/Music/hummus.mp3 &>/dev/null;
+        play /home/igor-lumx/Music/hummus.mp3 &>/dev/null;
     done
 }
 alias fixkb="setxkbmap -model abnt2 -layout br"
 
-# sublime extended context search regex: (.*\n){0,2}.*search_string.*(\n.*){0,2} 
 
+PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
