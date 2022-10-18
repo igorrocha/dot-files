@@ -119,6 +119,9 @@ alias bs="npm run build:staging"
 alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
 alias dbgen="yarn prisma generate; echo \"prisma schema generate finished.\" | lmk"
 alias freshstart="git checkout .; git pull; nvm use 14.20.0; yarn; dbpull; dbgen; nrd"
+alias nsvex="npm run start:vex"
+alias nsfit="npm run start:fitdance"
+alias nspenta="npm run start:penta"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
@@ -132,6 +135,8 @@ alias fixkb="setxkbmap -model abnt2 -layout br"
 
 
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
+
+export PATH="$PATH:/home/igor-lumx/.local/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
