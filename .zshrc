@@ -122,6 +122,10 @@ alias freshstart="git checkout .; git pull; nvm use 14.20.0; yarn; dbpull; dbgen
 alias nsvex="npm run start:vex"
 alias nsfit="npm run start:fitdance"
 alias nspenta="npm run start:penta"
+alias nsmynt="npm run start:mynt"
+alias dv2="cd ~/Projects/Lumx/Core/dcommerce-v2"
+alias sv2="cd ~/Projects/Lumx/Core/server-v2"
+
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
