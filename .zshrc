@@ -113,7 +113,6 @@ alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --ame
 # npm
 alias ns="npm start"
 alias nrd="npm run dev"
-alias bs="npm run build:staging"
 
 # Lumx
 alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
@@ -123,9 +122,7 @@ alias nsvex="npm run start:vex"
 alias nsfit="npm run start:fitdance"
 alias nspenta="npm run start:penta"
 alias nsmynt="npm run start:mynt"
-alias dv2="cd ~/Projects/Lumx/Core/dcommerce-v2"
-alias sv2="cd ~/Projects/Lumx/Core/server-v2"
-
+alias nscg="npm run start:cg"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
