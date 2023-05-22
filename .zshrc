@@ -109,35 +109,30 @@ gitzshrc() {
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
+alias gitmain="git merge main | grep CONFLICT"
 
 # npm
 alias ns="npm start"
 alias nrd="npm run dev"
 
 # Lumx
-alias dbpull="yarn prisma db pull; echo \"prisma db pull finished.\" | lmk"
-alias dbgen="yarn prisma generate; echo \"prisma schema generate finished.\" | lmk"
-alias freshstart="git checkout .; git pull; nvm use 14.20.0; yarn; dbpull; dbgen; nrd"
-alias nsvex="npm run start:vex"
-alias nsfit="npm run start:fitdance"
-alias nspenta="npm run start:penta"
-alias nsmynt="npm run start:mynt"
-alias nscg="npm run start:cg"
+alias dbpull="npx prisma db pull; echo \"prisma db pull finished.\" | lmk"
+alias dbgen="npx prisma generate; echo \"prisma schema generate finished.\" | lmk"
+alias freshstart="git checkout .; git pull; nvm use 16; npm i; dbpull; dbgen; nrd"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
 lmk() { 
     while read input; do
         notify-send "$input";
-        play /home/igor-lumx/Music/hummus.mp3 &>/dev/null;
+        play ~/Music/hummus.mp3 &>/dev/null;
     done
 }
 alias fixkb="setxkbmap -model abnt2 -layout br"
 
-
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 
-export PATH="$PATH:/home/igor-lumx/.local/bin"
+export PATH="$PATH:~/.local/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
