@@ -130,6 +130,10 @@ lmk() {
 }
 alias fixkb="setxkbmap -model abnt2 -layout br"
 
+# switch between bluetooth headphone profiles
+alias btcall="pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 handsfree_head_unit"
+alias btmusic="pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 a2dp_sink"
+
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 
 export PATH="$PATH:~/.local/bin"
