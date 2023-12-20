@@ -119,6 +119,7 @@ alias nrd="npm run dev"
 alias dbpull="npx prisma db pull; echo \"prisma db pull finished.\" | lmk"
 alias dbgen="npx prisma generate; echo \"prisma schema generate finished.\" | lmk"
 alias freshstart="git checkout .; git pull; nvm use 16; npm i; dbpull; dbgen; nrd"
+alias dbpass="unzip ~/Projects/dbpass.zip; cat dbpass.txt | xclip -selection c; rm dbpass.txt; echo 'password copied to clipboard'"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
