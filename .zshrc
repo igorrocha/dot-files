@@ -112,7 +112,7 @@ alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --ame
 alias gitmain="git merge main | grep CONFLICT"
 
 # npm
-alias ns="npm start"
+alias ns="npm run start:debug"
 alias nrd="npm run dev"
 
 # Lumx
@@ -132,9 +132,19 @@ lmk() {
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias c="code ."
 
-# switch between bluetooth headphone profiles
-alias btcall="pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 handsfree_head_unit"
-alias btmusic="pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 a2dp_sink"
+# switch between bluetooth headphone profiles and play/pause music
+# needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
+alias call="\
+  pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 handsfree_head_unit &> /dev/null;\
+  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 handsfree_head_unit &> /dev/null;\
+  spt playback -t > /dev/null
+"
+alias music="
+  pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 a2dp_sink &> /dev/null;\
+  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null;\
+  spotify > /dev/null;\
+  spt play --playlist --name \"This Is Several Definitions\" > /dev/null
+"
 
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 
@@ -142,3 +152,9 @@ export PATH="$PATH:~/.local/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/igor-lumx/google-cloud-sdk/path.zsh.inc' ]; then . '/home/igor-lumx/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc'; fi
