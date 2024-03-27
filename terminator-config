@@ -45,42 +45,42 @@
       type = Terminal
       parent = child2
       order = 0
-      profile = New Profile
+      profile = default
       uuid = a7266891-f4f8-4857-9999-dc0be9bfaf61
       command = cd ~/Projects/protocol-core; zsh;clear
     [[[child4]]]
-      type = HPaned
-      parent = child2
-      order = 1
-      position = 476
-      ratio = 0.4994753410283316
-    [[[terminal5]]]
-      type = Terminal
-      parent = child4
-      order = 0
-      profile = tasks
-      uuid = b55651b7-749a-44db-86b5-90b9bf9afbc8
-      command = ""
-    [[[child6]]]
       type = VPaned
-      parent = child4
+      parent = child2
       order = 1
       position = 266
       ratio = 0.5
-    [[[terminal7]]]
+    [[[child5]]]
+      type = HPaned
+      parent = child4
+      order = 0
+      position = 476
+      ratio = 0.4994753410283316
+    [[[terminal6]]]
       type = Terminal
-      parent = child6
+      parent = child5
       order = 0
       profile = default
       uuid = 3ecf141f-f8de-4f59-9791-7725c9f4b9cc
+      command = "echo tasks; zsh"
+    [[[terminal7]]]
+      type = Terminal
+      parent = child5
+      order = 1
+      profile = default
+      uuid = 18d417df-e80b-4861-afb3-453ebd727ed6
       command = cd ~/Projects/docs; zsh;clear
     [[[terminal8]]]
       type = Terminal
-      parent = child6
+      parent = child4
       order = 1
       profile = default
       uuid = dafb0ae6-eba5-4949-af79-5c3fc95ee00a
-      command = ""
+      command = "echo ngrok; zsh"
     [[[child9]]]
       type = VPaned
       parent = child1
