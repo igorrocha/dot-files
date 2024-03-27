@@ -129,20 +129,24 @@ lmk() {
         play ~/Music/hummus.mp3 &>/dev/null;
     done
 }
+
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias c="code ."
+alias tsk="task add; task list"
 
 # switch between bluetooth headphone profiles and play/pause music
 # needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
+# needs spotify application to be open beforehand, I suggest adding it to startup 
 alias call="\
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 handsfree_head_unit &> /dev/null;\
+  pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 handsfree_head_unit &> /dev/null;\
   pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 handsfree_head_unit &> /dev/null;\
   spt playback -t > /dev/null
 "
 alias music="
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 a2dp_sink &> /dev/null;\
+  pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 a2dp_sink &> /dev/null;\
   pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null;\
-  spotify > /dev/null;\
   spt play --playlist --name \"This Is Several Definitions\" > /dev/null
 "
 
@@ -158,3 +162,7 @@ if [ -f '/home/igor-lumx/google-cloud-sdk/path.zsh.inc' ]; then . '/home/igor-lu
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc'; fi
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
