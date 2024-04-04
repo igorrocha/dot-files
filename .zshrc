@@ -102,7 +102,7 @@ source $ZSH/oh-my-zsh.sh
 # zshrc
 alias zshrc="code ~/Projects/dot-files/.zshrc"
 gitdot() {
-	cd ~/Projects/dot-files && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "git push finished." | lmk
+	TWD=$(pwd); cd ~/Projects/dot-files && git add . && git commit -m $1 && git push && cd $TWD
 }
 
 # git
