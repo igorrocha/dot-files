@@ -100,16 +100,18 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # zshrc
-alias zshrc="code ~/Projects/zshrc/.zshrc"
-gitzshrc() {
-	cd ~/Projects/zshrc && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "zshrc git push finished." | lmk
+alias zshrc="code ~/Projects/dot-files/.zshrc"
+gitdot() {
+	cd ~/Projects/dot-files && git add . && git commit -m $1 && git push && cd ~/Projects ; echo "git push finished." | lmk
 }
 
 # git
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
-alias gitmain="git merge main | grep CONFLICT"
+gitmerge() {
+  git merge $1 | grep CONFLICT
+}
 
 # npm
 alias ns="npm run start:debug"
