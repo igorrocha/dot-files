@@ -134,16 +134,16 @@ lmk() {
 
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias c="code ."
-alias tsk="task add; task list"
+alias tasks="nano ~/tasks.txt"
 
 # switch between bluetooth headphone profiles and play/pause music
 # needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
 # needs spotify application to be open beforehand, I suggest adding it to startup 
 alias call="\
+  spt playback -t > /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 handsfree_head_unit &> /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 handsfree_head_unit &> /dev/null;\
-  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 handsfree_head_unit &> /dev/null;\
-  spt playback -t > /dev/null
+  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 handsfree_head_unit &> /dev/null
 "
 alias music="
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 a2dp_sink &> /dev/null;\
