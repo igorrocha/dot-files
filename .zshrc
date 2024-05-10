@@ -149,7 +149,7 @@ alias music="
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 a2dp_sink &> /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 a2dp_sink &> /dev/null;\
   pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null;\
-  spt play --playlist --name \"This Is Several Definitions\" > /dev/null
+  spt play --uri https://open.spotify.com/playlist/37i9dQZF1DZ06evO4hQGLG > /dev/null
 "
 
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
