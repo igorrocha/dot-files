@@ -134,7 +134,7 @@ lmk() {
 
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias c="code ."
-alias tasks="nano ~/tasks.txt"
+alias tasks="echo -n "❌✅" | xclip -selection clipboard; nano ~/tasks.txt"
 
 # switch between bluetooth headphone profiles and play/pause music
 # needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
