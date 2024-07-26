@@ -122,6 +122,8 @@ alias dbpull="npx prisma db pull; echo \"prisma db pull finished.\" | lmk"
 alias dbgen="npx prisma generate; echo \"prisma schema generate finished.\" | lmk"
 alias freshstart="git checkout .; git pull; nvm use 16; npm i; dbpull; dbgen; nrd"
 alias dbpass="unzip ~/Projects/dbpass.zip; cat dbpass.txt | xclip -selection c; rm dbpass.txt; echo 'password copied to clipboard'"
+alias goaa="go run cmd/local/main.go"
+alias dockerup="docker compose up --detach"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
@@ -134,7 +136,7 @@ lmk() {
 
 alias fixkb="setxkbmap -model abnt2 -layout br"
 alias c="code ."
-alias tasks="echo -n "❌✅" | xclip -selection clipboard; nano ~/tasks.txt"
+alias tasks="echo -n "❌✅🔜" | xclip -selection clipboard; nano +-1 ~/tasks.txt"
 
 # switch between bluetooth headphone profiles and play/pause music
 # needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
@@ -151,11 +153,14 @@ alias music="
   pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null;\
   spt play --uri https://open.spotify.com/playlist/37i9dQZF1DZ06evO4hQGLG > /dev/null
 "
+# brown noise
+alias noise="play -n synth brownnoise lowpass -1 1k gain -10 &"
 
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 
 export PATH="$PATH:~/.local/bin"
 export PATH="$PATH:/usr/local/go/bin"
+export PATH="$PATH:/snap/k9s/current/bin"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
