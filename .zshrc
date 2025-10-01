@@ -108,14 +108,16 @@ gitdot() {
 # git
 alias gitwip="git add .;git commit -am 'wip' --no-verify"
 alias gitamend="git add . && git commit --amend --no-edit"
+alias create-pr='gh pr create --base main --head $(git branch --show-current)'
 alias fixandpush="eslint . --ext .js,.jsx --fix && git add . && git commit --amend --no-edit && git push; echo \"eslint and push finished.\" | lmk"
 gitmerge() {
   git merge $1 | grep CONFLICT
 }
 
-# npm
+# npm / pnpm
 alias ns="npm run start:debug"
 alias nrd="npm run dev"
+alias pns="pnpm start:debug"
 
 # Lumx
 alias dbpull="npx prisma db pull; echo \"prisma db pull finished.\" | lmk"
@@ -124,6 +126,10 @@ alias freshstart="git checkout .; git pull; nvm use 16; npm i; dbpull; dbgen; nr
 alias dbpass="unzip ~/Projects/dbpass.zip; cat dbpass.txt | xclip -selection c; rm dbpass.txt; echo 'password copied to clipboard'"
 alias goaa="go run cmd/local/main.go"
 alias dockerup="docker compose up --detach"
+
+# VPN
+alias vpnon="sudo tailscale up --accept-routes"
+alias vpnoff="sudo tailscale down"
 
 # Other useful stuff 
 # play command needs sox installed: sudo apt-get install sox libsox-fmt-all
@@ -135,14 +141,12 @@ lmk() {
 }
 
 alias fixkb="setxkbmap -model abnt2 -layout br"
-alias c="code ."
-alias tasks="echo -n "❌✅🔜" | xclip -selection clipboard; nano +-1 ~/tasks.txt"
+alias c="cursor ."
+alias cc="cursor .; claude"
 
-# switch between bluetooth headphone profiles and play/pause music
-# needs spotify, pulse audio and https://github.com/Rigellute/spotify-tui installed
-# needs spotify application to be open beforehand, I suggest adding it to startup 
+# switch between bluetooth headphone profiles
+# needs pulse audio installed
 alias call="\
-  spt playback -t > /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 handsfree_head_unit &> /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 handsfree_head_unit &> /dev/null;\
   pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 handsfree_head_unit &> /dev/null
@@ -150,11 +154,10 @@ alias call="\
 alias music="
   pacmd set-card-profile bluez_card.50_C2_ED_E5_4C_74 a2dp_sink &> /dev/null;\
   pacmd set-card-profile bluez_card.50_C2_ED_E4_FA_03 a2dp_sink &> /dev/null;\
-  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null;\
-  spt play --uri https://open.spotify.com/playlist/37i9dQZF1DZ06evO4hQGLG > /dev/null
+  pacmd set-card-profile bluez_card.40_35_E6_05_EC_62 a2dp_sink &> /dev/null
 "
-# brown noise
-alias noise="play -n synth brownnoise lowpass -1 1k gain -10 &"
+
+alias temporallocal="temporal server start-dev  --namespace default   --search-attribute CorrelationId=Keyword   --search-attribute CustomerTaxId=Keyword   --search-attribute PartnerFeeWalletAddress=Keyword   --search-attribute Blockchain=Keyword   --search-attribute WorkflowId=Keyword   --search-attribute WorkflowType=Keyword   --search-attribute ExecutionStatus=Keyword   --search-attribute StartTime=Datetime   --search-attribute CloseTime=Datetime"
 
 PROMPT='%{$fg[yellow]%}[%D{%T}] '$PROMPT
 
@@ -171,6 +174,24 @@ if [ -f '/home/igor-lumx/google-cloud-sdk/path.zsh.inc' ]; then . '/home/igor-lu
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/igor-lumx/google-cloud-sdk/completion.zsh.inc'; fi
 
+cursor() {
+    # Start the Cursor AppImage in the background, suppressing output
+    nohup ~/AppImages/cursor.appimage $argv --no-sandbox > /dev/null 2>&1 &
+}
+
 autoload -Uz compinit
 zstyle ':completion:*' menu select
 fpath+=~/.zfunc
+
+export PATH=$PATH:/home/igor-lumx/.spicetify
+export PATH="$HOME:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+# pnpm
+export PNPM_HOME="/home/igor-lumx/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end
